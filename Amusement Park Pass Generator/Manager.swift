@@ -22,10 +22,6 @@ protocol ManagerType: EntrantType {
 
 enum ManagementTier {
     case ShiftManager, GeneralManager, SeniorManager
-    
-    func accessGranted() -> (area: [AreaAccess], ride: [RideAccess], discount: [Discount]?) {
-        return (area: [.AmusementAreas, .KitchenAreas, .RideControlAreas, .MaintenanceAreas, .OfficeAreas], ride: [.AllRides], discount: [.DiscountOnFood(discount: 25), .DiscountOnMerchandise(discount: 25)])
-    }
 }
 
 struct Manager: ManagerType {
@@ -39,7 +35,9 @@ struct Manager: ManagerType {
     var dateOfBirth: NSDate
     var managerType: ManagementTier
     
-    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: NSDate?, managerType: ManagementTier?) throws {
+    var pass: Pass?
+
+    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, managerType: ManagementTier?) throws {
         guard let first = firstName, let last = lastName else { throw ParkError.MissingName }
         
         guard let address = streetAddress, let city = city, let state = state, let zip = zipCode else { throw ParkError.MissingAddress }
@@ -57,7 +55,7 @@ struct Manager: ManagerType {
         self.state = state
         self.zipCode = zip
         self.socialSecurityNumber = security
-        self.dateOfBirth = birthDate
+        self.dateOfBirth = dateFormatter.dateFromString(birthDate)!
         self.managerType = type
     }
         

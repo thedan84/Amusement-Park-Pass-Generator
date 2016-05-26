@@ -9,18 +9,6 @@
 import Foundation
 
 protocol EntrantType {
+    var pass: Pass? { get set }
     func swipePass()
-}
-
-enum AreaAccess {
-    case AmusementAreas, KitchenAreas, RideControlAreas, MaintenanceAreas, OfficeAreas
-}
-
-enum RideAccess {
-    case AllRides, SkipAllRideLines
-}
-
-enum Discount {
-    case DiscountOnFood(discount: Int)
-    case DiscountOnMerchandise(discount: Int)
 }

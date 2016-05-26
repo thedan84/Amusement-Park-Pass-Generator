@@ -19,6 +19,9 @@
 		78B025A81CF4C4310003EDEA /* ParkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A71CF4C4310003EDEA /* ParkError.swift */; };
 		78B3E0D01CF7084800A5BC85 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 78B3E0CE1CF7084800A5BC85 /* AccessDenied.wav */; };
 		78B3E0D11CF7084800A5BC85 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 78B3E0CF1CF7084800A5BC85 /* AccessGranted.wav */; };
+		78B3E0D51CF709D300A5BC85 /* Kiosk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B3E0D41CF709D300A5BC85 /* Kiosk.swift */; };
+		78B3E0D71CF70A2C00A5BC85 /* Pass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B3E0D61CF70A2C00A5BC85 /* Pass.swift */; };
+		78B3E0D91CF71C2800A5BC85 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B3E0D81CF71C2800A5BC85 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		78B025A71CF4C4310003EDEA /* ParkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkError.swift; sourceTree = "<group>"; };
 		78B3E0CE1CF7084800A5BC85 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		78B3E0CF1CF7084800A5BC85 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
+		78B3E0D41CF709D300A5BC85 /* Kiosk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kiosk.swift; sourceTree = "<group>"; };
+		78B3E0D61CF70A2C00A5BC85 /* Pass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pass.swift; sourceTree = "<group>"; };
+		78B3E0D81CF71C2800A5BC85 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,11 +76,11 @@
 			children = (
 				7805747F1CEEE8B2004425C2 /* AppDelegate.swift */,
 				780574811CEEE8B2004425C2 /* ViewController.swift */,
-				780574911CEEE93A004425C2 /* EntrantType.swift */,
-				78B025A11CF4B2A40003EDEA /* Guest.swift */,
-				78B025A31CF4B2AA0003EDEA /* Employee.swift */,
-				78B025A51CF4B2B00003EDEA /* Manager.swift */,
+				78B3E0D41CF709D300A5BC85 /* Kiosk.swift */,
+				78B3E0D61CF70A2C00A5BC85 /* Pass.swift */,
+				78B3E0D31CF709A400A5BC85 /* Entrant */,
 				78B025A71CF4C4310003EDEA /* ParkError.swift */,
+				78B3E0D81CF71C2800A5BC85 /* DateFormatter.swift */,
 				780574831CEEE8B2004425C2 /* Main.storyboard */,
 				780574861CEEE8B2004425C2 /* Assets.xcassets */,
 				780574881CEEE8B2004425C2 /* LaunchScreen.storyboard */,
@@ -91,6 +97,17 @@
 				78B3E0CF1CF7084800A5BC85 /* AccessGranted.wav */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		78B3E0D31CF709A400A5BC85 /* Entrant */ = {
+			isa = PBXGroup;
+			children = (
+				780574911CEEE93A004425C2 /* EntrantType.swift */,
+				78B025A11CF4B2A40003EDEA /* Guest.swift */,
+				78B025A31CF4B2AA0003EDEA /* Employee.swift */,
+				78B025A51CF4B2B00003EDEA /* Manager.swift */,
+			);
+			name = Entrant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,9 +187,12 @@
 				78B025A61CF4B2B00003EDEA /* Manager.swift in Sources */,
 				780574921CEEE93A004425C2 /* EntrantType.swift in Sources */,
 				78B025A21CF4B2A40003EDEA /* Guest.swift in Sources */,
+				78B3E0D91CF71C2800A5BC85 /* DateFormatter.swift in Sources */,
 				78B025A81CF4C4310003EDEA /* ParkError.swift in Sources */,
 				78B025A41CF4B2AA0003EDEA /* Employee.swift in Sources */,
 				780574801CEEE8B2004425C2 /* AppDelegate.swift in Sources */,
+				78B3E0D71CF70A2C00A5BC85 /* Pass.swift in Sources */,
+				78B3E0D51CF709D300A5BC85 /* Kiosk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,20 +21,7 @@ protocol EmployeeType: EntrantType {
 }
 
 enum HourlyEmployee {
-    case FoodServices
-    case RideServices
-    case Maintenance
-    
-    func accessGranted() -> (area: [AreaAccess], ride: [RideAccess], discount: [Discount]?) {
-        switch self {
-        case .FoodServices:
-            return (area: [.AmusementAreas, .KitchenAreas], ride: [.AllRides], discount: [.DiscountOnFood(discount: 15), .DiscountOnMerchandise(discount: 25)])
-        case .RideServices:
-            return (area: [.AmusementAreas, .RideControlAreas], ride: [.AllRides], discount: [.DiscountOnFood(discount: 15), .DiscountOnMerchandise(discount: 25)])
-        case .Maintenance:
-            return (area: [.AmusementAreas, .KitchenAreas, .RideControlAreas, .MaintenanceAreas], ride: [.AllRides], discount: [.DiscountOnFood(discount: 15), .DiscountOnMerchandise(discount: 25)])
-        }
-    }
+    case FoodServices, RideServices, Maintenance
 }
 
 struct Employee: EmployeeType {
@@ -48,7 +35,9 @@ struct Employee: EmployeeType {
     var dateOfBirth: NSDate
     var employeeType: HourlyEmployee
     
-    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: NSDate?, employeeType: HourlyEmployee?) throws {
+    var pass: Pass?
+    
+    init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, employeeType: HourlyEmployee?) throws {
         guard let first = firstName, let last = lastName else { throw ParkError.MissingName }
         
         guard let address = streetAddress, let city = city, let state = state, let zip = zipCode else { throw ParkError.MissingAddress }
@@ -66,7 +55,7 @@ struct Employee: EmployeeType {
         self.state = state
         self.zipCode = zip
         self.socialSecurityNumber = security
-        self.dateOfBirth = birthDate
+        self.dateOfBirth = dateFormatter.dateFromString(birthDate)!
         self.employeeType = type
     }
         
