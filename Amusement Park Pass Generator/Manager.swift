@@ -58,8 +58,4 @@ struct Manager: ManagerType {
         self.dateOfBirth = dateFormatter.dateFromString(birthDate)!
         self.managerType = type
     }
-        
-    func swipePass() {
-        
-    }
 }

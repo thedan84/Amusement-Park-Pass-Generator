@@ -58,8 +58,4 @@ struct Employee: EmployeeType {
         self.dateOfBirth = dateFormatter.dateFromString(birthDate)!
         self.employeeType = type
     }
-        
-    func swipePass() {
-        
-    }
 }

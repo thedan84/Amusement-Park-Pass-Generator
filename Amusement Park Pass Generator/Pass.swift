@@ -148,9 +148,3 @@ enum Discount {
     }
     
 }
-
-extension Discount: Equatable {}
-
-func ==(lhs: Discount, rhs: Discount) -> Bool {
-    return lhs == rhs
-}

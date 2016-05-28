@@ -13,6 +13,7 @@
 		780574871CEEE8B2004425C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 780574861CEEE8B2004425C2 /* Assets.xcassets */; };
 		7805748A1CEEE8B2004425C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 780574881CEEE8B2004425C2 /* LaunchScreen.storyboard */; };
 		780574921CEEE93A004425C2 /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780574911CEEE93A004425C2 /* EntrantType.swift */; };
+		782A36491CF9A58F00FBB8CE /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A36481CF9A58F00FBB8CE /* Sound.swift */; };
 		78B025A21CF4B2A40003EDEA /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A11CF4B2A40003EDEA /* Guest.swift */; };
 		78B025A41CF4B2AA0003EDEA /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A31CF4B2AA0003EDEA /* Employee.swift */; };
 		78B025A61CF4B2B00003EDEA /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A51CF4B2B00003EDEA /* Manager.swift */; };
@@ -33,6 +34,7 @@
 		780574891CEEE8B2004425C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7805748B1CEEE8B2004425C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		780574911CEEE93A004425C2 /* EntrantType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
+		782A36481CF9A58F00FBB8CE /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		78B025A11CF4B2A40003EDEA /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		78B025A31CF4B2AA0003EDEA /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		78B025A51CF4B2B00003EDEA /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -76,9 +78,8 @@
 			children = (
 				7805747F1CEEE8B2004425C2 /* AppDelegate.swift */,
 				780574811CEEE8B2004425C2 /* ViewController.swift */,
-				78B3E0D41CF709D300A5BC85 /* Kiosk.swift */,
-				78B3E0D61CF70A2C00A5BC85 /* Pass.swift */,
-				78B3E0D31CF709A400A5BC85 /* Entrant */,
+				782A36471CF9A57B00FBB8CE /* Kiosk Model */,
+				78B3E0D31CF709A400A5BC85 /* Entrant Model */,
 				78B025A71CF4C4310003EDEA /* ParkError.swift */,
 				78B3E0D81CF71C2800A5BC85 /* DateFormatter.swift */,
 				780574831CEEE8B2004425C2 /* Main.storyboard */,
@@ -90,6 +91,16 @@
 			path = "Amusement Park Pass Generator";
 			sourceTree = "<group>";
 		};
+		782A36471CF9A57B00FBB8CE /* Kiosk Model */ = {
+			isa = PBXGroup;
+			children = (
+				78B3E0D41CF709D300A5BC85 /* Kiosk.swift */,
+				78B3E0D61CF70A2C00A5BC85 /* Pass.swift */,
+				782A36481CF9A58F00FBB8CE /* Sound.swift */,
+			);
+			name = "Kiosk Model";
+			sourceTree = "<group>";
+		};
 		78B3E0D21CF7084E00A5BC85 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +110,7 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
-		78B3E0D31CF709A400A5BC85 /* Entrant */ = {
+		78B3E0D31CF709A400A5BC85 /* Entrant Model */ = {
 			isa = PBXGroup;
 			children = (
 				780574911CEEE93A004425C2 /* EntrantType.swift */,
@@ -107,7 +118,7 @@
 				78B025A31CF4B2AA0003EDEA /* Employee.swift */,
 				78B025A51CF4B2B00003EDEA /* Manager.swift */,
 			);
-			name = Entrant;
+			name = "Entrant Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				780574821CEEE8B2004425C2 /* ViewController.swift in Sources */,
+				782A36491CF9A58F00FBB8CE /* Sound.swift in Sources */,
 				78B025A61CF4B2B00003EDEA /* Manager.swift in Sources */,
 				780574921CEEE93A004425C2 /* EntrantType.swift in Sources */,
 				78B025A21CF4B2A40003EDEA /* Guest.swift in Sources */,

@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let kiosk = Kiosk()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
     }
 }
 

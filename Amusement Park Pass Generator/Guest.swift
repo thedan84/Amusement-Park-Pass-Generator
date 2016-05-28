@@ -13,24 +13,45 @@ enum GuestType {
 }
 
 struct Guest: EntrantType {
-    var dateOfBirth: NSDate?
     var type: GuestType
     
     var pass: Pass?
     
     init(dateOfBirth: String?, guestType: GuestType) throws {
+        
+        func isYoungerThanFiveYearsOld(birthyear: NSDate) -> Bool {
+            let today = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components(.Year, fromDate: birthyear, toDate: today, options: .MatchFirst)
+            
+            if components.year <= 5 {
+                return true
+            } else {
+                return false
+            }
+        }
+        
         switch guestType {
         case .FreeChild:
             guard let birthday = dateOfBirth else { throw ParkError.MissingDateOfBirth }
             
-            self.dateOfBirth = dateFormatter.dateFromString(birthday)
-            self.type = guestType
+            let birthyear = dateFormatter.dateFromString(birthday)
+            
+            if isYoungerThanFiveYearsOld(birthyear!) {
+                self.type = .FreeChild
+            } else {
+                throw ParkError.ChildOlderThanFive
+            }
+            
+            
+            if isYoungerThanFiveYearsOld(birthyear!) {
+                self.type = .FreeChild
+            } else {
+                self.type = .Classic
+            }
             
         default: self.type = guestType
+            
         }
-    }
-    
-    func swipePass() {
-        
     }
 }

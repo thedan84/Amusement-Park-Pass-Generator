@@ -10,7 +10,9 @@ import Foundation
 
 protocol KioskType {
     func createPassForEntrant(entrant: EntrantType) -> Pass
-    mutating func validateAreaAccessForPass(pass: Pass, andArea area: AreaAccess) -> Bool
+    func validateAreaAccessForPass(pass: Pass, andArea areas: AreaAccess) -> Bool
+    func validateRideAccessForPass(pass: Pass, andRide rides: RideAccess) -> Bool
+    func validateDiscountAccessForPass(pass: Pass, andDiscount discounts: Discount) -> Bool
 }
 
 struct Kiosk: KioskType {
@@ -42,12 +44,23 @@ struct Kiosk: KioskType {
     func validateDiscountAccessForPass(pass: Pass, andDiscount discount: Discount) -> Bool {
         if let access = pass.discountAccess {
             for discountAccess in access {
-                if discountAccess == discount {
-                    return true
+                switch (discountAccess, discount) {
+                case (let .DiscountOnFood(value1), let .DiscountOnFood(value2)):
+                    if value1 == value2 {
+                        return true
+                    } else {
+                        return false
+                    }
+                case (let .DiscountOnMerchandise(value1), let .DiscountOnMerchandise(value2)):
+                    if value1 == value2 {
+                        return true
+                    } else {
+                        return false
+                    }
+                default: break
                 }
-            }
+            }            
         }
         return false
     }
-    
 }

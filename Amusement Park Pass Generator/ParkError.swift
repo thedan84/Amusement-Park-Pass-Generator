@@ -14,4 +14,6 @@ enum ParkError: ErrorType {
     case MissingSecurityNumber
     case MissingDateOfBirth
     case MissingType
+    case MissingPass
+    case ChildOlderThanFive
 }
