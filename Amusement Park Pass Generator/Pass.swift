@@ -8,6 +8,7 @@
 
 import UIKit
 
+//The PassType protocol to which every Pass has to conform
 protocol PassType {
     var image: UIImage? { get }
     var type: String? { get }
@@ -18,6 +19,7 @@ protocol PassType {
 }
 
 struct Pass: PassType {
+    //MARK: - Properties
     var image: UIImage?
     var type: String?
     var entrantName: String?
@@ -25,6 +27,8 @@ struct Pass: PassType {
     var rideAccess: [RideAccess]
     var discountAccess: [Discount]?
     
+    //MARK: - Helper enum
+    //The Type enum provides the type of pass the entrant gets
     enum Type: String {
         case ClassicGuestPass = "Classic Guest Pass"
         case ChildGuestPass = "Child Guest Pass"
@@ -37,6 +41,8 @@ struct Pass: PassType {
         case SeniorManagerPass = "Senior Manager Pass"
     }
     
+    //MARK: - Initialization
+    //Initialization is done via the EntrantType protocol. Switches allow to intialize the Pass with the correct entrant type.
     init(entrant: EntrantType) {
         switch entrant {
         case let guest as Guest:
@@ -77,12 +83,15 @@ struct Pass: PassType {
         default: break
         }
         
+        //Assign the right access to the properties
         self.areaAccess = AreaAccess.validateAccessForEntrant(entrant)
         self.rideAccess = RideAccess.validateAccessForEntrant(entrant)
         self.discountAccess = Discount.validateAccessForEntrant(entrant)
     }
 }
 
+//MARK: - Access Enums
+//The AreaAccess enum holds the different areas and validates which entrant is allowed access to which area
 enum AreaAccess {
     case AmusementAreas, KitchenAreas, RideControlAreas, MaintenanceAreas, OfficeAreas
     
@@ -105,6 +114,7 @@ enum AreaAccess {
     }
 }
 
+//The RideAccess enum holds the different areas and validates which entrant is allowed access to which ride
 enum RideAccess {
     case AllRides, SkipAllRideLines
     
@@ -126,6 +136,7 @@ enum RideAccess {
     }
 }
 
+//The Discount enum holds the different areas and validates which entrant is allowed access to which discount
 enum Discount {
     case DiscountOnFood(discount: Int)
     case DiscountOnMerchandise(discount: Int)

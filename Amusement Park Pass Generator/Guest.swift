@@ -8,17 +8,21 @@
 
 import Foundation
 
+//Enum with the different types of guests
 enum GuestType {
     case Classic, VIP, FreeChild
 }
 
 struct Guest: EntrantType {
+    //MARK: - Properties
     var type: GuestType
-    
+    var birthday: NSDate?
     var pass: Pass?
     
+    //MARK: - Initialization
     init(dateOfBirth: String?, guestType: GuestType) throws {
         
+        //Helper method to determine if the guest is younger than five years old and allowed to enter as a 'Free Child' guest
         func isYoungerThanFiveYearsOld(birthyear: NSDate) -> Bool {
             let today = NSDate()
             let calendar = NSCalendar.currentCalendar()
@@ -37,17 +41,13 @@ struct Guest: EntrantType {
             
             let birthyear = dateFormatter.dateFromString(birthday)
             
-            if isYoungerThanFiveYearsOld(birthyear!) {
-                self.type = .FreeChild
-            } else {
-                throw ParkError.ChildOlderThanFive
-            }
-            
+            self.birthday = birthyear
             
             if isYoungerThanFiveYearsOld(birthyear!) {
                 self.type = .FreeChild
             } else {
                 self.type = .Classic
+                throw ParkError.ChildOlderThanFive
             }
             
         default: self.type = guestType

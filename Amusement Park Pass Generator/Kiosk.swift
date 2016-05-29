@@ -8,6 +8,7 @@
 
 import Foundation
 
+//The KioskType protocol to which every type of kiosk has to conform
 protocol KioskType {
     func createPassForEntrant(entrant: EntrantType) -> Pass
     func validateAreaAccessForPass(pass: Pass, andArea areas: AreaAccess) -> Bool
@@ -17,12 +18,12 @@ protocol KioskType {
 
 struct Kiosk: KioskType {
     
-    var swipeCount = 0
-    
+    //Create a pass for the entrant type
     func createPassForEntrant(entrant: EntrantType) -> Pass {
         return Pass(entrant: entrant)
     }
     
+    //Validates if the pass is allowed to access an Area, like Amusement and Maintenance Areas
     func validateAreaAccessForPass(pass: Pass, andArea area: AreaAccess) -> Bool {
         for access in pass.areaAccess {
             if access == area {
@@ -32,6 +33,7 @@ struct Kiosk: KioskType {
         return false
     }
     
+    //Validates if the pass is allowed to access a ride, such as all rides or if the entrant is allowed to skip lines
     func validateRideAccessForPass(pass: Pass, andRide ride: RideAccess) -> Bool {
         for access in pass.rideAccess {
             if access == ride {
@@ -41,6 +43,7 @@ struct Kiosk: KioskType {
         return false
     }
     
+    //Validates if the pass is allowed to receive a discount on food or merchandise
     func validateDiscountAccessForPass(pass: Pass, andDiscount discount: Discount) -> Bool {
         if let access = pass.discountAccess {
             for discountAccess in access {

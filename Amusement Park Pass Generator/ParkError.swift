@@ -8,6 +8,7 @@
 
 import Foundation
 
+//ErrorType enum
 enum ParkError: ErrorType {
     case MissingName
     case MissingAddress

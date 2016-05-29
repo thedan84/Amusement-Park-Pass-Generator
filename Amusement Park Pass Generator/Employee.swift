@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol to which every type of employee has to conform
 protocol EmployeeType: EntrantType {
     var firstName: String { get }
     var lastName: String { get }
@@ -20,11 +21,13 @@ protocol EmployeeType: EntrantType {
     var employeeType: HourlyEmployee { get }
 }
 
+//Enum to differentiate between the various Hourly Employee types
 enum HourlyEmployee {
     case FoodServices, RideServices, Maintenance
 }
 
 struct Employee: EmployeeType {
+    //MARL: - Properties
     var firstName: String
     var lastName: String
     var streetAddress: String
@@ -37,6 +40,7 @@ struct Employee: EmployeeType {
     
     var pass: Pass?
     
+    //MARK: - Initialization
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, employeeType: HourlyEmployee?) throws {
         guard let first = firstName, let last = lastName else { throw ParkError.MissingName }
         

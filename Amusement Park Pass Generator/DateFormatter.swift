@@ -8,8 +8,9 @@
 
 import Foundation
 
+//A simple dateformatter which converts the date to the right format
 var dateFormatter: NSDateFormatter = {
     let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM/DD/YYYY"
+    dateFormatter.dateFormat = "MM/dd/yyyy"
     return dateFormatter
 }()
