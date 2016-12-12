@@ -17,13 +17,13 @@ protocol EmployeeType: EntrantType {
     var state: String { get }
     var zipCode: Int { get }
     var socialSecurityNumber: Int { get }
-    var dateOfBirth: NSDate { get }
+    var dateOfBirth: Date { get }
     var employeeType: HourlyEmployee { get }
 }
 
 //Enum to differentiate between the various Hourly Employee types
 enum HourlyEmployee {
-    case FoodServices, RideServices, Maintenance
+    case foodServices, rideServices, maintenance
 }
 
 struct Employee: EmployeeType {
@@ -35,22 +35,22 @@ struct Employee: EmployeeType {
     var state: String
     var zipCode: Int
     var socialSecurityNumber: Int
-    var dateOfBirth: NSDate
+    var dateOfBirth: Date
     var employeeType: HourlyEmployee
     
     var pass: Pass?
     
     //MARK: - Initialization
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, employeeType: HourlyEmployee?) throws {
-        guard let first = firstName, let last = lastName else { throw ParkError.MissingName }
+        guard let first = firstName, let last = lastName else { throw ParkError.missingName }
         
-        guard let address = streetAddress, let city = city, let state = state, let zip = zipCode else { throw ParkError.MissingAddress }
+        guard let address = streetAddress, let city = city, let state = state, let zip = zipCode else { throw ParkError.missingAddress }
         
-        guard let security = socialSecurityNumber else { throw ParkError.MissingSecurityNumber }
+        guard let security = socialSecurityNumber else { throw ParkError.missingSecurityNumber }
         
-        guard let birthDate = dateOfBirth else { throw ParkError.MissingDateOfBirth }
+        guard let birthDate = dateOfBirth else { throw ParkError.missingDateOfBirth }
         
-        guard let type = employeeType else { throw ParkError.MissingType }
+        guard let type = employeeType else { throw ParkError.missingType }
         
         self.firstName = first
         self.lastName = last
@@ -59,7 +59,7 @@ struct Employee: EmployeeType {
         self.state = state
         self.zipCode = zip
         self.socialSecurityNumber = security
-        self.dateOfBirth = dateFormatter.dateFromString(birthDate)!
+        self.dateOfBirth = dateFormatter.date(from: birthDate)!
         self.employeeType = type
     }
 }

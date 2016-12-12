@@ -21,7 +21,7 @@ extension EntrantType {
     
     //Swipe the pass at an area, to get access to amusement or maintenance areas
     func swipePass(forArea area: AreaAccess) throws {
-        guard let pass = pass else { throw ParkError.MissingPass }
+        guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
         var sound = Sound()
@@ -38,7 +38,7 @@ extension EntrantType {
     
     //Swipe the pass at a ride, to get access to rides or skip lines
     func swipePass(forRide ride: RideAccess) throws {
-        guard let pass = pass else { throw ParkError.MissingPass }
+        guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
         var sound = Sound()
@@ -55,28 +55,28 @@ extension EntrantType {
     
     //Swipe the pass at a shop or eatery, to get discounts on food and/or merchandise
     func swipePass(forDiscount discount: Discount) throws {
-        guard let pass = pass else { throw ParkError.MissingPass }
+        guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
         var sound = Sound()
         
         if kiosk.validateDiscountAccessForPass(pass, andDiscount: discount) {
             switch discount {
-            case let .DiscountOnFood(value) :
+            case let .discountOnFood(value) :
                 print("Discount Granted for \(value)% off of food")
                 sound.playAccessGrantedSound()
                 hasGuestBirthday()
-            case let .DiscountOnMerchandise(value):
+            case let .discountOnMerchandise(value):
                 print("Discount Granted for \(value)% off of merchandise")
                 sound.playAccessGrantedSound()
                 hasGuestBirthday()
             }
         } else {
             switch discount {
-            case let .DiscountOnFood(value):
+            case let .discountOnFood(value):
                 print("Discount NOT Granted for \(value)% off of food")
                 sound.playAccessDeniedSound()
-            case let .DiscountOnMerchandise(value):
+            case let .discountOnMerchandise(value):
                 print("Discount NOT Granted for \(value)% off of merchandise")
                 sound.playAccessDeniedSound()
             }
@@ -84,14 +84,14 @@ extension EntrantType {
     }
     
     //Private function to check if the entrant's birthday is on the day
-    private func hasGuestBirthday() {
+    fileprivate func hasGuestBirthday() {
         switch self {
         case let guest as Guest:
             if let birthday = guest.birthday {
                 
-                let calendar = NSCalendar.currentCalendar()
-                let todayComponents = calendar.components([.Month, .Day], fromDate: NSDate())
-                let birthdayComponents = calendar.components([.Month, .Day], fromDate: birthday)
+                let calendar = Calendar.current
+                let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
+                let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
                 
                 if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                     print("Happy Birthday")
@@ -101,10 +101,10 @@ extension EntrantType {
         case let employee as Employee:
             let birthday = employee.dateOfBirth
             
-            let calendar = NSCalendar.currentCalendar()
+            let calendar = Calendar.current
             
-            let todayComponents = calendar.components([.Month, .Day], fromDate: NSDate())
-            let birthdayComponents = calendar.components([.Month, .Day], fromDate: birthday)
+            let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
+            let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
             
             if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                 print("Happy Birthday")
@@ -112,9 +112,9 @@ extension EntrantType {
         case let manager as Manager:
             let birthday = manager.dateOfBirth
                 
-            let calendar = NSCalendar.currentCalendar()
-            let todayComponents = calendar.components([.Month, .Day], fromDate: NSDate())
-            let birthdayComponents = calendar.components([.Month, .Day], fromDate: birthday)
+            let calendar = Calendar.current
+            let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
+            let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
             
             if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                 print("Happy Birthday")

@@ -29,7 +29,7 @@ struct Pass: PassType {
     
     //MARK: - Helper enum
     //The Type enum provides the type of pass the entrant gets
-    enum Type: String {
+    enum GuestType: String {
         case ClassicGuestPass = "Classic Guest Pass"
         case ChildGuestPass = "Child Guest Pass"
         case VIPGuestPass = "VIP Guest Pass"
@@ -49,36 +49,36 @@ struct Pass: PassType {
             self.entrantName = nil
             
             switch guest.type {
-            case .Classic:
-                self.type = Type.ClassicGuestPass.rawValue
-            case .VIP:
-                self.type = Type.VIPGuestPass.rawValue
-            case .FreeChild:
-                self.type = Type.ChildGuestPass.rawValue
+            case .classic:
+                self.type = GuestType.ClassicGuestPass.rawValue
+            case .vip:
+                self.type = GuestType.VIPGuestPass.rawValue
+            case .freeChild:
+                self.type = GuestType.ChildGuestPass.rawValue
             }
             
         case let employee as Employee:
             self.entrantName = "\(employee.firstName) \(employee.lastName)"
             
             switch employee.employeeType {
-            case .FoodServices:
-                self.type = Type.FoodServicePass.rawValue
-            case .RideServices:
-                self.type = Type.RideServicePass.rawValue
-            case .Maintenance:
-                self.type = Type.MaintenancePass.rawValue
+            case .foodServices:
+                self.type = GuestType.FoodServicePass.rawValue
+            case .rideServices:
+                self.type = GuestType.RideServicePass.rawValue
+            case .maintenance:
+                self.type = GuestType.MaintenancePass.rawValue
             }
             
         case let manager as Manager:
             self.entrantName = "\(manager.firstName) \(manager.lastName)"
             
             switch manager.managerType {
-            case .GeneralManager:
-                self.type = Type.GeneralManagerPass.rawValue
-            case .SeniorManager:
-                self.type = Type.SeniorManagerPass.rawValue
-            case .ShiftManager:
-                self.type = Type.ShiftManagerPass.rawValue
+            case .generalManager:
+                self.type = GuestType.GeneralManagerPass.rawValue
+            case .seniorManager:
+                self.type = GuestType.SeniorManagerPass.rawValue
+            case .shiftManager:
+                self.type = GuestType.ShiftManagerPass.rawValue
             }
         default: break
         }
@@ -93,20 +93,20 @@ struct Pass: PassType {
 //MARK: - Access Enums
 //The AreaAccess enum holds the different areas and validates which entrant is allowed access to which area
 enum AreaAccess {
-    case AmusementAreas, KitchenAreas, RideControlAreas, MaintenanceAreas, OfficeAreas
+    case amusementAreas, kitchenAreas, rideControlAreas, maintenanceAreas, officeAreas
     
-    static func validateAccessForEntrant(entrant: EntrantType) -> [AreaAccess] {
+    static func validateAccessForEntrant(_ entrant: EntrantType) -> [AreaAccess] {
         var access = [AreaAccess]()
         
         switch entrant {
-        case is Guest: access = [.AmusementAreas]
+        case is Guest: access = [.amusementAreas]
         case let employee as Employee:
             switch employee.employeeType {
-            case .FoodServices: access = [.AmusementAreas, .KitchenAreas]
-            case .RideServices: access = [.AmusementAreas, .RideControlAreas]
-            case .Maintenance: access = [.AmusementAreas, .KitchenAreas, .RideControlAreas, .MaintenanceAreas]
+            case .foodServices: access = [.amusementAreas, .kitchenAreas]
+            case .rideServices: access = [.amusementAreas, .rideControlAreas]
+            case .maintenance: access = [.amusementAreas, .kitchenAreas, .rideControlAreas, .maintenanceAreas]
             }
-        case is Manager: access = [.AmusementAreas, .KitchenAreas, .RideControlAreas, .MaintenanceAreas, .OfficeAreas]
+        case is Manager: access = [.amusementAreas, .kitchenAreas, .rideControlAreas, .maintenanceAreas, .officeAreas]
         default: break
         }
         
@@ -116,19 +116,19 @@ enum AreaAccess {
 
 //The RideAccess enum holds the different areas and validates which entrant is allowed access to which ride
 enum RideAccess {
-    case AllRides, SkipAllRideLines
+    case allRides, skipAllRideLines
     
-    static func validateAccessForEntrant(entrant: EntrantType) -> [RideAccess] {
+    static func validateAccessForEntrant(_ entrant: EntrantType) -> [RideAccess] {
         var access = [RideAccess]()
         
         switch entrant {
         case let guest as Guest:
             switch guest.type {
-            case .Classic, .FreeChild: access = [.AllRides]
-            case .VIP: access = [.AllRides, .SkipAllRideLines]
+            case .classic, .freeChild: access = [.allRides]
+            case .vip: access = [.allRides, .skipAllRideLines]
             }
-        case is Employee: access = [.AllRides]
-        case is Manager: access = [.AllRides]
+        case is Employee: access = [.allRides]
+        case is Manager: access = [.allRides]
         default: break
         }
         
@@ -138,20 +138,20 @@ enum RideAccess {
 
 //The Discount enum holds the different areas and validates which entrant is allowed access to which discount
 enum Discount {
-    case DiscountOnFood(discount: Int)
-    case DiscountOnMerchandise(discount: Int)
+    case discountOnFood(discount: Int)
+    case discountOnMerchandise(discount: Int)
     
-    static func validateAccessForEntrant(entrant: EntrantType) -> [Discount]? {
+    static func validateAccessForEntrant(_ entrant: EntrantType) -> [Discount]? {
         var access: [Discount]?
         
         switch entrant {
         case let guest as Guest:
             switch guest.type {
-            case .VIP: access = [.DiscountOnFood(discount: 10), .DiscountOnMerchandise(discount: 20)]
+            case .vip: access = [.discountOnFood(discount: 10), .discountOnMerchandise(discount: 20)]
             default: access = nil
             }
-        case is Employee: access = [.DiscountOnFood(discount: 15), .DiscountOnMerchandise(discount: 25)]
-        case is Manager: access = [.DiscountOnFood(discount: 25), .DiscountOnMerchandise(discount: 25)]
+        case is Employee: access = [.discountOnFood(discount: 15), .discountOnMerchandise(discount: 25)]
+        case is Manager: access = [.discountOnFood(discount: 25), .discountOnMerchandise(discount: 25)]
         default: break
         }
         

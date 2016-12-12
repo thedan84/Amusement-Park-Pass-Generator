@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         //Uncomment to get a simple 'Classic' guest
         
         do {
-            let classicGuest = try Guest(dateOfBirth: nil, guestType: .Classic)
+            let classicGuest = try Guest(dateOfBirth: nil, guestType: .classic)
             
             self.guest = classicGuest
             

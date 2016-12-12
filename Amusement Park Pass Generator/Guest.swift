@@ -10,25 +10,25 @@ import Foundation
 
 //Enum with the different types of guests
 enum GuestType {
-    case Classic, VIP, FreeChild
+    case classic, vip, freeChild
 }
 
 struct Guest: EntrantType {
     //MARK: - Properties
     var type: GuestType
-    var birthday: NSDate?
+    var birthday: Date?
     var pass: Pass?
     
     //MARK: - Initialization
     init(dateOfBirth: String?, guestType: GuestType) throws {
         
         //Helper method to determine if the guest is younger than five years old and allowed to enter as a 'Free Child' guest
-        func isYoungerThanFiveYearsOld(birthyear: NSDate) -> Bool {
-            let today = NSDate()
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components(.Year, fromDate: birthyear, toDate: today, options: .MatchFirst)
+        func isYoungerThanFiveYearsOld(_ birthyear: Date) -> Bool {
+            let today = Date()
+            let calendar = Calendar.current
+            let components = (calendar as NSCalendar).components(.year, from: birthyear, to: today, options: .matchFirst)
             
-            if components.year <= 5 {
+            if components.year! <= 5 {
                 return true
             } else {
                 return false
@@ -36,18 +36,18 @@ struct Guest: EntrantType {
         }
         
         switch guestType {
-        case .FreeChild:
-            guard let birthday = dateOfBirth else { throw ParkError.MissingDateOfBirth }
+        case .freeChild:
+            guard let birthday = dateOfBirth else { throw ParkError.missingDateOfBirth }
             
-            let birthyear = dateFormatter.dateFromString(birthday)
+            let birthyear = dateFormatter.date(from: birthday)
             
             self.birthday = birthyear
             
             if isYoungerThanFiveYearsOld(birthyear!) {
-                self.type = .FreeChild
+                self.type = .freeChild
             } else {
-                self.type = .Classic
-                throw ParkError.ChildOlderThanFive
+                self.type = .classic
+                throw ParkError.childOlderThanFive
             }
             
         default: self.type = guestType
