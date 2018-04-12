@@ -12,36 +12,29 @@ import AudioToolbox
 struct Sound {
     
     //MARK: - Properties
-    var accessGrantedSound: SystemSoundID = 0
-    var accessDeniedSound: SystemSoundID = 1
+    private static let accessGranted: SystemSoundID = {
+       let pathToSoundFile = Bundle.main.url(forResource: "AccessGranted", withExtension: "wav")!
+        var soundID: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(pathToSoundFile as CFURL, &soundID)
+        return soundID
+    }()
     
-    //Properties which get the right sound based on path
-    var accessGranted: URL {
-        let pathToSoundFile = Bundle.main.path(forResource: "AccessGranted", ofType: "wav")
-        return URL(fileURLWithPath: pathToSoundFile!)
+    private static let accessDenied: SystemSoundID = {
+        let pathToSoundFile = Bundle.main.url(forResource: "AccessDenied", withExtension: "wav")!
+        var soundID: SystemSoundID = 1
+        AudioServicesCreateSystemSoundID(pathToSoundFile as CFURL, &soundID)
+        return soundID
+    }()
+    
+    //MARK: - Private intializer
+    private init() {}
+    
+    //MARK: - Play sound functions
+    static func playAccessGrantedSound() {
+        AudioServicesPlayAlertSound(accessGranted)
     }
     
-    var accessDenied: URL {
-        let pathToSoundFile = Bundle.main.path(forResource: "AccessDenied", ofType: "wav")
-        return URL(fileURLWithPath: pathToSoundFile!)
-    }
-    
-    //MARK: - Helper
-    //Helper function to load the right sound from the bundle url
-    mutating func loadSoundWithURL(_ url: URL, id: inout SystemSoundID) {
-        AudioServicesCreateSystemSoundID(url as CFURL, &id)
-    }
-    
-    //MARK: - Play the right sound
-    //Play the access granted sound
-    mutating func playAccessGrantedSound() {
-        loadSoundWithURL(accessGranted, id: &accessGrantedSound)
-        AudioServicesPlaySystemSound(accessGrantedSound)
-    }
-    
-    //Play the access denied sound
-    mutating func playAccessDeniedSound() {
-        loadSoundWithURL(accessDenied, id: &accessDeniedSound)
-        AudioServicesPlaySystemSound(accessDeniedSound)
+    static func playAccessDeniedSound() {
+        AudioServicesPlayAlertSound(accessDenied)
     }
 }

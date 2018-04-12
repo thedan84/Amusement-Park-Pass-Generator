@@ -24,15 +24,14 @@ extension EntrantType {
         guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
-        var sound = Sound()
 
         if kiosk.validateAreaAccessForPass(pass, andArea: area) {
             print("Access Granted to: \(area)")
-            sound.playAccessGrantedSound()
+            Sound.playAccessGrantedSound()
             hasGuestBirthday()
         } else {
             print("Access NOT Granted to :\(area)")
-            sound.playAccessDeniedSound()
+            Sound.playAccessDeniedSound()
         }
     }
     
@@ -41,15 +40,14 @@ extension EntrantType {
         guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
-        var sound = Sound()
         
         if kiosk.validateRideAccessForPass(pass, andRide: ride) {
             print("Access Granted to: \(ride)")
-            sound.playAccessGrantedSound()
+            Sound.playAccessGrantedSound()
             hasGuestBirthday()
         } else {
             print("Access NOT Granted to: \(ride)")
-            sound.playAccessDeniedSound()
+            Sound.playAccessDeniedSound()
         }
     }
     
@@ -58,27 +56,26 @@ extension EntrantType {
         guard let pass = pass else { throw ParkError.missingPass }
         
         let kiosk = Kiosk()
-        var sound = Sound()
         
         if kiosk.validateDiscountAccessForPass(pass, andDiscount: discount) {
             switch discount {
             case let .discountOnFood(value) :
                 print("Discount Granted for \(value)% off of food")
-                sound.playAccessGrantedSound()
+                Sound.playAccessGrantedSound()
                 hasGuestBirthday()
             case let .discountOnMerchandise(value):
                 print("Discount Granted for \(value)% off of merchandise")
-                sound.playAccessGrantedSound()
+                Sound.playAccessGrantedSound()
                 hasGuestBirthday()
             }
         } else {
             switch discount {
             case let .discountOnFood(value):
                 print("Discount NOT Granted for \(value)% off of food")
-                sound.playAccessDeniedSound()
+                Sound.playAccessDeniedSound()
             case let .discountOnMerchandise(value):
                 print("Discount NOT Granted for \(value)% off of merchandise")
-                sound.playAccessDeniedSound()
+                Sound.playAccessDeniedSound()
             }
         }
     }
