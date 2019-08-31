@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     //MARK: - Properties
     let kiosk = Kiosk()
-    var guest: EntrantType?
+    var guest: Entrant?
     
     //MARK: - View lifecycle
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             self.guest = vip
             
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             self.guest = freeChild
             
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -62,9 +62,9 @@ class ViewController: UIViewController {
             self.guest = freeChildError
             
         } catch ParkError.ChildOlderThanFive {
-            print("Sorry, your kid is too old!")
+            print(error.localizedDescription)
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             self.guest = maintenance
             
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
             self.guest = foodServiceError
          
         } catch ParkError.MissingName {
-            print("No name was provided")
+            print(error.localizedDescription)
         } catch {
             print(error)
         }
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
             self.guest = rideService
          
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
             self.guest = shiftManager
          
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -126,9 +126,9 @@ class ViewController: UIViewController {
             self.guest = generalManager
          
         } catch ParkError.MissingAddress {
-            print("Please provide an address")
+            print(error.localizedDescription)
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -140,7 +140,7 @@ class ViewController: UIViewController {
             self.guest = seniorManager
          
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
         */
         
@@ -153,9 +153,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forArea: .AmusementAreas)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
          */
@@ -169,9 +169,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forArea: .KitchenAreas)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -185,9 +185,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forArea: .RideControlAreas)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -201,9 +201,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forArea: .MaintenanceAreas)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -217,9 +217,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forArea: .OfficeAreas)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -233,9 +233,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forRide: .AllRides)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -249,9 +249,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forRide: .SkipAllRideLines)
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -265,9 +265,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forDiscount: .DiscountOnFood(discount: 10))
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -281,9 +281,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forDiscount: .DiscountOnFood(discount: 15))
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -297,9 +297,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forDiscount: .DiscountOnFood(discount: 25))
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -313,9 +313,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forDiscount: .DiscountOnMerchandise(discount: 20))
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */
@@ -329,9 +329,9 @@ class ViewController: UIViewController {
             do {
                 try guest.swipePass(forDiscount: .DiscountOnMerchandise(discount: 25))
             } catch ParkError.MissingPass {
-                print("You don't have an access pass yet. Please get one!")
+                print(error.localizedDescription)
             } catch {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         */

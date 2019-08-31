@@ -10,21 +10,21 @@ import Foundation
 
 //The KioskType protocol to which every type of kiosk has to conform
 protocol KioskType {
-    func createPassForEntrant(_ entrant: EntrantType) -> Pass
-    func validateAreaAccessForPass(_ pass: Pass, andArea areas: AreaAccess) -> Bool
-    func validateRideAccessForPass(_ pass: Pass, andRide rides: RideAccess) -> Bool
-    func validateDiscountAccessForPass(_ pass: Pass, andDiscount discounts: Discount) -> Bool
+    func createPassForEntrant(_ entrant: Entrant) -> ParkPass
+    func validateAreaAccessForPass(_ pass: ParkPass, andArea areas: AreaAccess) -> Bool
+    func validateRideAccessForPass(_ pass: ParkPass, andRide rides: RideAccess) -> Bool
+    func validateDiscountAccessForPass(_ pass: ParkPass, andDiscount discounts: Discount) -> Bool
 }
 
 struct Kiosk: KioskType {
     
     //Create a pass for the entrant type
-    func createPassForEntrant(_ entrant: EntrantType) -> Pass {
-        return Pass(entrant: entrant)
+    func createPassForEntrant(_ entrant: Entrant) -> ParkPass {
+        return ParkPass(entrant: entrant)
     }
     
     //Validates if the pass is allowed to access an Area, like Amusement and Maintenance Areas
-    func validateAreaAccessForPass(_ pass: Pass, andArea area: AreaAccess) -> Bool {
+    func validateAreaAccessForPass(_ pass: ParkPass, andArea area: AreaAccess) -> Bool {
         for access in pass.areaAccess {
             if access == area {
                 return true
@@ -34,7 +34,7 @@ struct Kiosk: KioskType {
     }
     
     //Validates if the pass is allowed to access a ride, such as all rides or if the entrant is allowed to skip lines
-    func validateRideAccessForPass(_ pass: Pass, andRide ride: RideAccess) -> Bool {
+    func validateRideAccessForPass(_ pass: ParkPass, andRide ride: RideAccess) -> Bool {
         for access in pass.rideAccess {
             if access == ride {
                 return true
@@ -44,7 +44,7 @@ struct Kiosk: KioskType {
     }
     
     //Validates if the pass is allowed to receive a discount on food or merchandise
-    func validateDiscountAccessForPass(_ pass: Pass, andDiscount discount: Discount) -> Bool {
+    func validateDiscountAccessForPass(_ pass: ParkPass, andDiscount discount: Discount) -> Bool {
         if let access = pass.discountAccess {
             for discountAccess in access {
                 switch (discountAccess, discount) {

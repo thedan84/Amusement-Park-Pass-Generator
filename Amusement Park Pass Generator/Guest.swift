@@ -13,11 +13,11 @@ enum GuestType {
     case classic, vip, freeChild
 }
 
-struct Guest: EntrantType {
+struct Guest: Entrant {
     //MARK: - Properties
     var type: GuestType
     var birthday: Date?
-    var pass: Pass?
+    var pass: ParkPass?
     
     //MARK: - Initialization
     init(dateOfBirth: String?, guestType: GuestType) throws {
@@ -51,7 +51,6 @@ struct Guest: EntrantType {
             }
             
         default: self.type = guestType
-            
         }
     }
 }

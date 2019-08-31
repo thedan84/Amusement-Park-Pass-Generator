@@ -9,7 +9,7 @@
 import Foundation
 
 //Protocol to which every type of employee has to conform
-protocol EmployeeType: EntrantType {
+protocol Employee: Entrant {
     var firstName: String { get }
     var lastName: String { get }
     var streetAddress: String { get }
@@ -18,7 +18,6 @@ protocol EmployeeType: EntrantType {
     var zipCode: Int { get }
     var socialSecurityNumber: Int { get }
     var dateOfBirth: Date { get }
-    var employeeType: HourlyEmployee { get }
 }
 
 //Enum to differentiate between the various Hourly Employee types
@@ -26,8 +25,8 @@ enum HourlyEmployee {
     case foodServices, rideServices, maintenance
 }
 
-struct Employee: EmployeeType {
-    //MARL: - Properties
+struct ParkEmployee: Employee {
+    //MARK: - Properties
     var firstName: String
     var lastName: String
     var streetAddress: String
@@ -38,7 +37,7 @@ struct Employee: EmployeeType {
     var dateOfBirth: Date
     var employeeType: HourlyEmployee
     
-    var pass: Pass?
+    var pass: ParkPass?
     
     //MARK: - Initialization
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, employeeType: HourlyEmployee?) throws {

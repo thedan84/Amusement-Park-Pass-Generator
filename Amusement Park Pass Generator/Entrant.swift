@@ -9,15 +9,15 @@
 import Foundation
 
 //The EntrantType protocol to wich every entrant has to conform
-protocol EntrantType {
-    var pass: Pass? { get set }
+protocol Entrant {
+    var pass: ParkPass? { get set }
     func swipePass(forArea area: AreaAccess) throws
     func swipePass(forRide ride: RideAccess) throws
     func swipePass(forDiscount discount: Discount) throws
 }
 
 //Extension to give a default swipe implementation to every type which conforms to the EntrantType protocol
-extension EntrantType {
+extension Entrant {
     
     //Swipe the pass at an area, to get access to amusement or maintenance areas
     func swipePass(forArea area: AreaAccess) throws {
@@ -86,32 +86,28 @@ extension EntrantType {
         case let guest as Guest:
             if let birthday = guest.birthday {
                 
-                let calendar = Calendar.current
-                let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
-                let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
+                let todayComponents = Calendar.current.dateComponents([.month, .day], from: Date())
+                let birthdayComponents = Calendar.current.dateComponents([.month, .day], from: birthday as Date)
                 
                 if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                     print("Happy Birthday")
                 }
                 
             }
-        case let employee as Employee:
+        case let employee as ParkEmployee:
             let birthday = employee.dateOfBirth
             
-            let calendar = Calendar.current
-            
-            let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
-            let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
+            let todayComponents = Calendar.current.dateComponents([.month, .day], from: Date())
+            let birthdayComponents = Calendar.current.dateComponents([.month, .day], from: birthday as Date)
             
             if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                 print("Happy Birthday")
             }
         case let manager as Manager:
             let birthday = manager.dateOfBirth
-                
-            let calendar = Calendar.current
-            let todayComponents = (calendar as NSCalendar).components([.month, .day], from: Date())
-            let birthdayComponents = (calendar as NSCalendar).components([.month, .day], from: birthday as Date)
+            
+            let todayComponents = Calendar.current.dateComponents([.month, .day], from: Date())
+            let birthdayComponents = Calendar.current.dateComponents([.month, .day], from: birthday as Date)
             
             if todayComponents.month == birthdayComponents.month && todayComponents.day == birthdayComponents.day {
                 print("Happy Birthday")

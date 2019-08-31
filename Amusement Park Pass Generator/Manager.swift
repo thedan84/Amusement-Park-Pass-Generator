@@ -8,25 +8,12 @@
 
 import Foundation
 
-//Protocol to which every manager type has to conform
-protocol ManagerType: EntrantType {
-    var firstName: String { get }
-    var lastName: String { get }
-    var streetAddress: String { get }
-    var city: String { get }
-    var state: String { get }
-    var zipCode: Int { get }
-    var socialSecurityNumber: Int { get }
-    var dateOfBirth: Date { get }
-    var managerType: ManagementTier { get }
-}
-
 //Enum to differentiate between the various Manager types
 enum ManagementTier {
     case shiftManager, generalManager, seniorManager
 }
 
-struct Manager: ManagerType {
+struct Manager: Employee {
     
     //MARK: - Properties
     var firstName: String
@@ -39,7 +26,7 @@ struct Manager: ManagerType {
     var dateOfBirth: Date
     var managerType: ManagementTier
     
-    var pass: Pass?
+    var pass: ParkPass?
     
     //MARK: - Initialization
     init(firstName: String?, lastName: String?, streetAddress: String?, city: String?, state: String?, zipCode: Int?, socialSecurityNumber: Int?, dateOfBirth: String?, managerType: ManagementTier?) throws {

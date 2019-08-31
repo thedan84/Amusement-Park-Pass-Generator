@@ -12,10 +12,10 @@
 		780574851CEEE8B2004425C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 780574831CEEE8B2004425C2 /* Main.storyboard */; };
 		780574871CEEE8B2004425C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 780574861CEEE8B2004425C2 /* Assets.xcassets */; };
 		7805748A1CEEE8B2004425C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 780574881CEEE8B2004425C2 /* LaunchScreen.storyboard */; };
-		780574921CEEE93A004425C2 /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780574911CEEE93A004425C2 /* EntrantType.swift */; };
+		780574921CEEE93A004425C2 /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780574911CEEE93A004425C2 /* Entrant.swift */; };
 		782A36491CF9A58F00FBB8CE /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782A36481CF9A58F00FBB8CE /* Sound.swift */; };
 		78B025A21CF4B2A40003EDEA /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A11CF4B2A40003EDEA /* Guest.swift */; };
-		78B025A41CF4B2AA0003EDEA /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A31CF4B2AA0003EDEA /* Employee.swift */; };
+		78B025A41CF4B2AA0003EDEA /* ParkEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A31CF4B2AA0003EDEA /* ParkEmployee.swift */; };
 		78B025A61CF4B2B00003EDEA /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A51CF4B2B00003EDEA /* Manager.swift */; };
 		78B025A81CF4C4310003EDEA /* ParkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B025A71CF4C4310003EDEA /* ParkError.swift */; };
 		78B3E0D01CF7084800A5BC85 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 78B3E0CE1CF7084800A5BC85 /* AccessDenied.wav */; };
@@ -33,10 +33,10 @@
 		780574861CEEE8B2004425C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		780574891CEEE8B2004425C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7805748B1CEEE8B2004425C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		780574911CEEE93A004425C2 /* EntrantType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
+		780574911CEEE93A004425C2 /* Entrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
 		782A36481CF9A58F00FBB8CE /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		78B025A11CF4B2A40003EDEA /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
-		78B025A31CF4B2AA0003EDEA /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		78B025A31CF4B2AA0003EDEA /* ParkEmployee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkEmployee.swift; sourceTree = "<group>"; };
 		78B025A51CF4B2B00003EDEA /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		78B025A71CF4C4310003EDEA /* ParkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkError.swift; sourceTree = "<group>"; };
 		78B3E0CE1CF7084800A5BC85 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 		78B3E0D31CF709A400A5BC85 /* Entrant Model */ = {
 			isa = PBXGroup;
 			children = (
-				780574911CEEE93A004425C2 /* EntrantType.swift */,
+				780574911CEEE93A004425C2 /* Entrant.swift */,
 				78B025A11CF4B2A40003EDEA /* Guest.swift */,
-				78B025A31CF4B2AA0003EDEA /* Employee.swift */,
+				78B025A31CF4B2AA0003EDEA /* ParkEmployee.swift */,
 				78B025A51CF4B2B00003EDEA /* Manager.swift */,
 			);
 			name = "Entrant Model";
@@ -148,18 +148,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Dennis Parussini";
 				TargetAttributes = {
 					7805747B1CEEE8B2004425C2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
 			buildConfigurationList = 780574771CEEE8B2004425C2 /* Build configuration list for PBXProject "Amusement Park Pass Generator" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -198,11 +198,11 @@
 				780574821CEEE8B2004425C2 /* ViewController.swift in Sources */,
 				782A36491CF9A58F00FBB8CE /* Sound.swift in Sources */,
 				78B025A61CF4B2B00003EDEA /* Manager.swift in Sources */,
-				780574921CEEE93A004425C2 /* EntrantType.swift in Sources */,
+				780574921CEEE93A004425C2 /* Entrant.swift in Sources */,
 				78B025A21CF4B2A40003EDEA /* Guest.swift in Sources */,
 				78B3E0D91CF71C2800A5BC85 /* DateFormatter.swift in Sources */,
 				78B025A81CF4C4310003EDEA /* ParkError.swift in Sources */,
-				78B025A41CF4B2AA0003EDEA /* Employee.swift in Sources */,
+				78B025A41CF4B2AA0003EDEA /* ParkEmployee.swift in Sources */,
 				780574801CEEE8B2004425C2 /* AppDelegate.swift in Sources */,
 				78B3E0D71CF70A2C00A5BC85 /* Pass.swift in Sources */,
 				78B3E0D51CF709D300A5BC85 /* Kiosk.swift in Sources */,
@@ -235,6 +235,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -291,6 +292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -345,8 +347,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.thedan84.Amusement-Park-Pass-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -358,8 +359,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.thedan84.Amusement-Park-Pass-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
